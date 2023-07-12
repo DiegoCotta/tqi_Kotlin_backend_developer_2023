@@ -9,11 +9,6 @@ data class Cart(
         @Id
         @GeneratedValue(strategy = GenerationType.UUID)
         val id: UUID? = null,
-        @Column(nullable = false) val amountItems: Int = 0,
-        @ManyToMany @JoinTable(
-                name = "cart_product",
-                joinColumns = [JoinColumn(name = "product_id", referencedColumnName = "id")],
-                inverseJoinColumns = [JoinColumn(name = "cart_id", referencedColumnName = "id")],
-        ) var products: List<Product> = mutableListOf(),
+        @OneToMany(mappedBy = "cart")  var products: List<CartSale> = mutableListOf(),
         @OneToOne @JoinColumn(name = "sale_id", referencedColumnName = "id") val sale: Sale?
 )
