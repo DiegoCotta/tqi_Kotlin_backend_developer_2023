@@ -10,8 +10,8 @@ import java.time.LocalDate
 data class Coupon(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "id", nullable = false)
         val id: Long? = null,
+        @Column( nullable = false)val code: String,
         @Enumerated @Column(nullable = false) val discountType: CouponType = CouponType.FIXED,
         @Column(nullable = false) val discountValue: BigDecimal = BigDecimal.ZERO,
         @Column(nullable = false) val expirationDate: LocalDate = LocalDate.now()

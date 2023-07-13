@@ -66,7 +66,6 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 * Alterar quantidade de produtos de um carrinho
 * Listar Informações do carrinho
 * Finalizar compra do carrinho
-* Listar Informações de uma venda
 
 <h4>API Privada de JuMarket</h4>
 
@@ -79,6 +78,7 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 * Informações do produto
 * Listar cupons
 * Listar vendas de um dia
+* Listar Informações de uma venda
 
 <h4>Validações que a API</h4>
 
@@ -101,5 +101,6 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 * Criar um cadastro de usuário para realizar uma compra
 * Cupons ter um limite de uso
 * Listar compras realizadas em uma faixa de tempo
+* Paginações para as listagens de produto, categoria, carrinhos, vendas, cupons
 
 <h3>Como executar o projeto:</h3>
