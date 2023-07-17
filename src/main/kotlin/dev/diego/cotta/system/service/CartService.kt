@@ -22,4 +22,6 @@ interface CartService {
 
     fun findTodaySales(): List<Cart>
 
+    fun deleteCartProduct(cartProduct: CartProduct)
+
 }

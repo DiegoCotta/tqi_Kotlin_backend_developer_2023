@@ -12,13 +12,17 @@ import dev.diego.cotta.system.service.CartService
 import dev.diego.cotta.system.service.CouponService
 import jakarta.transaction.Transactional
 import jakarta.validation.Valid
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
@@ -34,7 +38,7 @@ class CartController(
         val cart = service.save(Cart())
         cart.id?.let { service.saveAllProducts(cartDto.products.map { it.toEntity(cart.id) }) }
         service.findCartById(cart.id!!)
-        return ResponseEntity.ok(CartCreatedView(service.findCartById(cart.id!!)))
+        return ResponseEntity.ok(CartCreatedView(service.findCartById(cart.id)))
     }
 
     @PostMapping("/checkout")
@@ -56,7 +60,7 @@ class CartController(
 
     @PutMapping("/update-product")
     fun updateCartProducts(@RequestBody @Valid cartDto: CartProductUpdateDto): ResponseEntity<CartCreatedView> {
-        val products = cartDto.products.map { product ->
+        cartDto.products.map { product ->
             service.findCartProductById(cartDto.cartId, product.productId)
                 .apply {
                     quantity = product.quantity
@@ -72,4 +76,11 @@ class CartController(
     @GetMapping("/today-sales")
     fun getTodaySales(): ResponseEntity<List<CartPrivateView>> =
         ResponseEntity.ok(service.findTodaySales().map { CartPrivateView(it) })
+
+    @DeleteMapping("/remove/product/{productId}/cart/{cartId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun deleteCartProduct(@PathVariable productId: Long, @PathVariable cartId: UUID) {
+        val cartProduct = service.findCartProductById(cartId = cartId, productId = productId)
+        service.deleteCartProduct(cartProduct)
+    }
 }

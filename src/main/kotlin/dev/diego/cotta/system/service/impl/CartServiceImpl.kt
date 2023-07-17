@@ -50,4 +50,8 @@ class CartServiceImpl(
 
     override fun findTodaySales(): List<Cart> =
         cartRepository.findAllBySale_Date(LocalDate.now())
+
+    override fun deleteCartProduct(cartProduct: CartProduct) {
+        cartProductRepository.delete(cartProduct)
+    }
 }
