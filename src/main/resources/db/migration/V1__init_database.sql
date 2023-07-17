@@ -25,6 +25,7 @@ CREATE TABLE product
     category_id    BIGINT,
     CONSTRAINT pk_product PRIMARY KEY (id)
 );
+
 CREATE TABLE cart
 (
     id                        UUID    NOT NULL,
@@ -39,21 +40,23 @@ CREATE TABLE cart
 
 CREATE TABLE cart_product
 (
-    cart_id    UUID   NOT NULL,
-    product_id BIGINT NOT NULL,
-    quantity   INT    NOT NULL,
+    quantity   DECIMAL NOT NULL,
+    cart_id    UUID    NOT NULL,
+    product_id BIGINT  NOT NULL,
     CONSTRAINT pk_cart_product PRIMARY KEY (cart_id, product_id)
 );
 
-
-ALTER TABLE cart
-    ADD CONSTRAINT FK_CART_ON_COUPON FOREIGN KEY (coupon_id) REFERENCES coupon (id);
+ALTER TABLE category
+    ADD CONSTRAINT uc_category_name UNIQUE (name);
 
 ALTER TABLE product
     ADD CONSTRAINT FK_PRODUCT_ON_CATEGORY FOREIGN KEY (category_id) REFERENCES category (id);
 
-ALTER TABLE cart_product
-    ADD CONSTRAINT FK_CART_PRODUCT_ON_CART FOREIGN KEY (cart_id) REFERENCES cart (id);
+ALTER TABLE cart
+    ADD CONSTRAINT FK_CART_ON_COUPON FOREIGN KEY (coupon_id) REFERENCES coupon (id);
 
 ALTER TABLE cart_product
-    ADD CONSTRAINT FK_CART_PRODUCT_ON_PRODUCT FOREIGN KEY (product_id) REFERENCES product (id);
+    ADD CONSTRAINT FK_CART_PRODUCT_ON_CARTID FOREIGN KEY (cart_id) REFERENCES cart (id);
+
+ALTER TABLE cart_product
+    ADD CONSTRAINT FK_CART_PRODUCT_ON_PRODUCTID FOREIGN KEY (product_id) REFERENCES product (id);

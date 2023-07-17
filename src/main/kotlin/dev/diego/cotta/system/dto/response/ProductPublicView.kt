@@ -9,13 +9,15 @@ data class ProductPublicView(
     val measuringUnit: MeasuringUnitType,
     val price: BigDecimal,
     val quantity: BigDecimal,
-    val id: Long
+    val id: Long,
+    val categoryName: String
 ) {
     constructor(product: Product) : this(
         name = product.name,
         measuringUnit = product.measuringUnit,
         price = product.price,
         quantity = product.quantity,
-        id = product.id ?: 0L
+        id = product.id ?: 0L,
+        categoryName = product.category.name
     )
 }

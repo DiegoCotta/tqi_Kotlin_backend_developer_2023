@@ -19,6 +19,6 @@ class Coupon(
     val id: Long? = null,
     @Column(nullable = false) val code: String,
     @Enumerated @Column(nullable = false) val discountType: CouponType = CouponType.FIXED,
-    @Column(nullable = false) val discountValue: BigDecimal = BigDecimal.ZERO,
+    @Column(nullable = false, scale = 2) val discountValue: BigDecimal = BigDecimal.ZERO,
     @Column(nullable = false) val expirationDate: LocalDate = LocalDate.now()
 )

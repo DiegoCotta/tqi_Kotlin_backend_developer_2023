@@ -18,5 +18,8 @@ class ProductServiceImpl(private val repository: ProductRepository) : ProductSer
         repository.findById(id).orElseThrow { BusinessException("Produto não encontrado!") }
 
     override fun findByName(name: String): List<Product> =
-        repository.findAllByNameLikeIgnoreCase(name)
+        repository.findAllByNameContainingIgnoreCase(name)
+
+    override fun findByCategoryName(name: String): List<Product> =
+        repository.findByCategory_NameContainsIgnoreCase(name)
 }

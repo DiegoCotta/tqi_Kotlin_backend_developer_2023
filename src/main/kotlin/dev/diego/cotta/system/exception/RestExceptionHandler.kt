@@ -17,7 +17,10 @@ class RestExceptionHandler {
     fun handlerValidException(ex: MethodArgumentNotValidException): ResponseEntity<ExceptionDetails> {
         val erros: MutableMap<String, String?> = HashMap()
         ex.bindingResult.allErrors.stream().forEach { erro: ObjectError ->
-            val fieldName: String = (erro as FieldError).field
+            val fieldName = if (erro is FieldError)
+                erro.field
+            else
+                erro.objectName
             val messageError: String? = erro.defaultMessage
             erros[fieldName] = messageError
         }
@@ -55,7 +58,7 @@ class RestExceptionHandler {
                     timestamp = LocalDateTime.now(),
                     status = HttpStatus.BAD_REQUEST.value(),
                     exception = ex.javaClass.toString(),
-                    details = mutableMapOf(ex.cause.toString() to ex.message)
+                    details = mutableMapOf("message" to ex.message)
                 )
             )
     }

@@ -12,5 +12,6 @@ interface ProductService {
 
     fun findByName(name: String): List<Product>
 
+    fun findByCategoryName(name: String): List<Product>
 
 }

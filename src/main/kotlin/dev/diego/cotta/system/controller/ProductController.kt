@@ -38,18 +38,18 @@ class ProductController(val service: ProductService, val categoryService: Catego
         return ResponseEntity.ok(ProductPrivateView(product))
     }
 
-    @GetMapping("/{category}")
+    @GetMapping("/find/category/{category}")
     fun getProductsByCategory(@PathVariable category: String): ResponseEntity<List<ProductPublicView>> {
-        return ResponseEntity.ok(service.findByName(category).map { ProductPublicView(it) })
+        return ResponseEntity.ok(service.findByCategoryName(category).map { ProductPublicView(it) })
     }
-
-    @GetMapping("/find/id/{id}")
-    fun getProductById(@PathVariable id: Long): ResponseEntity<ProductPrivateView> =
-        ResponseEntity.ok(ProductPrivateView(service.findById(id)))
 
     @GetMapping("/find/name/{name}")
     fun getProductByName(@PathVariable name: String): ResponseEntity<List<ProductPublicView>> =
         ResponseEntity.ok(service.findByName(name).map { ProductPublicView(it) })
+
+    @GetMapping("/find/id/{id}")
+    fun getProductById(@PathVariable id: Long): ResponseEntity<ProductPrivateView> =
+        ResponseEntity.ok(ProductPrivateView(service.findById(id)))
 
     @GetMapping
     fun getAllProducts(): ResponseEntity<List<ProductPublicView>> =

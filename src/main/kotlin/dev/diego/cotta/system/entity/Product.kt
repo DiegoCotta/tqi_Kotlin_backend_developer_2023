@@ -15,6 +15,7 @@ import java.math.BigDecimal
 
 @Entity
 @Table(name = "product")
+@SuppressWarnings("LongParameterList")
 class Product(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,

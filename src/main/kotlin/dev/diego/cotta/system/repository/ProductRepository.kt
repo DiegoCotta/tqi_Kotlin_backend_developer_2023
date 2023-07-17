@@ -2,10 +2,13 @@ package dev.diego.cotta.system.repository
 
 import dev.diego.cotta.system.entity.Product
 import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.data.jpa.repository.Query
 
 interface ProductRepository : JpaRepository<Product, Long> {
-    @Query(value = "SELECT * FROM product WHERE name LIKE ?1", nativeQuery = true)
 
-    fun findAllByNameLikeIgnoreCase(name: String): List<Product>
+    fun findAllByNameContainingIgnoreCase(name: String): List<Product>
+
+    @SuppressWarnings("FunctionNaming")
+    fun findByCategory_NameContainsIgnoreCase(name: String): List<Product>
+
+
 }
