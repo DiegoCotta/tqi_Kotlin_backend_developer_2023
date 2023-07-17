@@ -1,4 +1,4 @@
-package dev.diego.system.entity
+package dev.diego.cotta.system.entity
 
 enum class PaymentType {
     CREDIT, DEBIT, PIX

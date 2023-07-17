@@ -59,8 +59,8 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 
 * Buscar produto por nome
 * Listar produtos disponiveis
-* Listar Categorias
 * Listar produtos por Categoria
+* Listar Categorias
 * Criar carrinho com produtos
 * Adicionar produto no carrinho
 * Alterar quantidade de produtos de um carrinho
@@ -78,7 +78,6 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 * Informações do produto
 * Listar cupons
 * Listar vendas de um dia
-* Listar Informações de uma venda
 
 <h4>Validações que a API</h4>
 
@@ -102,5 +101,6 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 * Cupons ter um limite de uso
 * Listar compras realizadas em uma faixa de tempo
 * Paginações para as listagens de produto, categoria, carrinhos, vendas, cupons
+* Melhora dos tratamento dos nullables
 
 <h3>Como executar o projeto:</h3>

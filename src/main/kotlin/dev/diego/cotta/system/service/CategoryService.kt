@@ -7,4 +7,6 @@ interface CategoryService {
     fun save(category: Category) : Category
 
     fun findAll(): List<Category>
+
+    fun findById(id: Long): Category
 }

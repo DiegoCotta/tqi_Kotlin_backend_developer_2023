@@ -4,10 +4,14 @@ import dev.diego.cotta.system.entity.Product
 
 interface ProductService {
 
-    fun save(product: Product) : Product
+    fun save(product: Product): Product
 
-    fun findAllByCategoryId(categoryId: Long): List<Product>
 
-    fun findAll() : List<Product>
+    fun findAll(): List<Product>
+
+    fun findById(id: Long): Product
+
+    fun findByName(name: String): List<Product>
+
 
 }
