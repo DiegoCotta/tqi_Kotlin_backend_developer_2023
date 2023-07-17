@@ -9,11 +9,11 @@ data class CouponView(val code: String, val discount: String, val expirationDate
     constructor(coupon: Coupon) : this(code = coupon.code, discount = when (coupon.discountType) {
         CouponType.FIXED ->
             String.format(Locale.ROOT, "R$ %s",
-                    DecimalFormat("#0.##").format(coupon.discountValue))
+                DecimalFormat("#0.00").format(coupon.discountValue))
 
         CouponType.PERCENTAGE ->
             String.format(Locale.ROOT, "%s%%",
-                    DecimalFormat("#0.##").format(coupon.discountValue))
+                DecimalFormat("#0.##").format(coupon.discountValue))
     }, expirationDate = coupon.expirationDate.toString())
 
 }

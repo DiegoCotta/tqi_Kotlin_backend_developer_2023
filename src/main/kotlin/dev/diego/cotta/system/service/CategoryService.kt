@@ -4,7 +4,7 @@ import dev.diego.cotta.system.entity.Category
 
 interface CategoryService {
 
-    fun save(category: Category) : Category
+    fun save(category: Category): Category
 
     fun findAll(): List<Category>
 

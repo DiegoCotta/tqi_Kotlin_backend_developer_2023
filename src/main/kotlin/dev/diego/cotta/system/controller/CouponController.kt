@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/coupon")
+@RequestMapping("/coupon")
 class CouponController(private val service: CouponService) {
 
     @PostMapping
     fun saveCoupon(@RequestBody @Valid couponDto: CouponDto): ResponseEntity<Any> {
-         service.save(couponDto.toEntity())
+        service.save(couponDto.toEntity())
         return ResponseEntity.status(HttpStatus.CREATED).build()
     }
 

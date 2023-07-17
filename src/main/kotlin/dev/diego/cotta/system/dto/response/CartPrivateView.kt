@@ -8,14 +8,14 @@ import java.time.LocalDate
 import java.util.*
 
 data class CartPrivateView(
-        val cartId: UUID,
-        val saleId: UUID,
-        val totalPrice: BigDecimal,
-        val coupon: Coupon?,
-        val paymentType: PaymentType,
-        val totalPriceWithDiscount: BigDecimal?,
-        val date: LocalDate,
-        val totalProducts: Int
+    val cartId: UUID,
+    val saleId: UUID,
+    val totalPrice: BigDecimal,
+    val coupon: Coupon?,
+    val paymentType: PaymentType,
+    val totalPriceWithDiscount: BigDecimal?,
+    val date: LocalDate,
+    val totalProducts: Int
 ) {
     constructor(cart: Cart) : this(
         cartId = cart.id!!,

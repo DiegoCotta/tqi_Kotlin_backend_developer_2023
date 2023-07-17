@@ -12,9 +12,8 @@ class CouponServiceImpl(private val repository: CouponRepository) : CouponServic
     override fun save(coupon: Coupon): Coupon =
         repository.save(coupon)
 
-
     override fun listCoupons(): List<Coupon> =
-        repository.findAll(Sort.by(Sort.Direction.DESC, "name"))
+        repository.findAll()
 
     override fun findByCode(code: String): Coupon =
         repository.findByCode(code) ?: throw BusinessException("Cupom Inválido!")

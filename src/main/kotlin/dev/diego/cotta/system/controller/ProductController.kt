@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController
 
 
 @RestController
-@RequestMapping("/api/product")
+@RequestMapping("/product")
 class ProductController(val service: ProductService, val categoryService: CategoryService) {
 
     @PostMapping
@@ -45,14 +45,14 @@ class ProductController(val service: ProductService, val categoryService: Catego
 
     @GetMapping("/find/id/{id}")
     fun getProductById(@PathVariable id: Long): ResponseEntity<ProductPrivateView> =
-            ResponseEntity.ok(ProductPrivateView(service.findById(id)))
+        ResponseEntity.ok(ProductPrivateView(service.findById(id)))
 
     @GetMapping("/find/name/{name}")
     fun getProductByName(@PathVariable name: String): ResponseEntity<List<ProductPublicView>> =
-            ResponseEntity.ok(service.findByName(name).map { ProductPublicView(it) })
+        ResponseEntity.ok(service.findByName(name).map { ProductPublicView(it) })
 
     @GetMapping
     fun getAllProducts(): ResponseEntity<List<ProductPublicView>> =
-            ResponseEntity.ok(service.findAll().map { ProductPublicView(it) })
+        ResponseEntity.ok(service.findAll().map { ProductPublicView(it) })
 
 }

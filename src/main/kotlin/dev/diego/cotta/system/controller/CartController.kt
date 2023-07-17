@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
 @RestController
-@RequestMapping("/api/cart")
+@RequestMapping("/cart")
 class CartController(
-        private val service: CartService,
-        private val serviceCoupon: CouponService,
+    private val service: CartService,
+    private val serviceCoupon: CouponService,
 ) {
     @PostMapping
     fun saveCart(@RequestBody @Valid cartDto: CartDto): ResponseEntity<CartCreatedView> {
@@ -58,9 +58,9 @@ class CartController(
 
     @GetMapping
     fun getCart(@RequestParam("id") id: UUID): ResponseEntity<CartPrivateView> =
-            ResponseEntity.ok(CartPrivateView(service.findCartById(id)))
+        ResponseEntity.ok(CartPrivateView(service.findCartById(id)))
 
     @GetMapping("/today-sales")
     fun getTodaySales(): ResponseEntity<List<CartPrivateView>> =
-            ResponseEntity.ok(service.findTodaySales().map { CartPrivateView(it) })
+        ResponseEntity.ok(service.findTodaySales().map { CartPrivateView(it) })
 }
