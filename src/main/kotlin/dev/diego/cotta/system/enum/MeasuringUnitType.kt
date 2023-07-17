@@ -1,4 +1,4 @@
-package dev.diego.cotta.system.entity
+package dev.diego.cotta.system.enum
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import dev.diego.cotta.system.exception.BusinessException

@@ -3,10 +3,11 @@ package dev.diego.cotta.system.dto.request
 import dev.diego.cotta.system.entity.Cart
 import dev.diego.cotta.system.entity.Coupon
 import dev.diego.cotta.system.entity.Sale
-import dev.diego.cotta.system.entity.CouponType
-import dev.diego.cotta.system.entity.PaymentType
+import dev.diego.cotta.system.enum.CouponType
+import dev.diego.cotta.system.enum.PaymentType
 import jakarta.validation.constraints.NotNull
 import java.math.BigDecimal
+import java.time.LocalDate
 
 import java.util.UUID
 
@@ -23,6 +24,7 @@ data class CheckoutDto(
             totalPrice = totalPrice,
             paymentType = paymentType,
             coupon = coupon,
+            date = LocalDate.now(),
             totalPriceWithDiscount = coupon?.let {
                 when (it.discountType) {
                     CouponType.FIXED -> {

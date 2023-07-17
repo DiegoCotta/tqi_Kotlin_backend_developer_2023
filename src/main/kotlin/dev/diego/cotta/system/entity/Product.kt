@@ -1,6 +1,7 @@
 package dev.diego.cotta.system.entity
 
 
+import dev.diego.cotta.system.enum.MeasuringUnitType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Enumerated
@@ -22,8 +23,8 @@ class Product(
     @Column(nullable = false) val name: String = "",
     @Enumerated @Column(nullable = false, length = 2)
     val measuringUnit: MeasuringUnitType = MeasuringUnitType.UN,
-    @Column(nullable = false) var price: BigDecimal = BigDecimal.ZERO,
-    @Column(nullable = false) var quantity: BigDecimal = BigDecimal.ZERO,
+    @Column(nullable = false, precision = 19, scale = 2) var price: BigDecimal = BigDecimal.ZERO,
+    @Column(nullable = false, precision = 19, scale = 2) var quantity: BigDecimal = BigDecimal.ZERO,
     @ManyToOne @JoinColumn(name = "category_id", referencedColumnName = "id")
     var category: Category,
     @OneToMany(mappedBy = "product")

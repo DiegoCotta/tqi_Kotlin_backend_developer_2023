@@ -1,8 +1,8 @@
 package dev.diego.cotta.system.dto.response
 
 import dev.diego.cotta.system.entity.Category
-import dev.diego.cotta.system.entity.MeasuringUnitType
 import dev.diego.cotta.system.entity.Product
+import dev.diego.cotta.system.enum.MeasuringUnitType
 import java.math.BigDecimal
 
 data class ProductPrivateView(

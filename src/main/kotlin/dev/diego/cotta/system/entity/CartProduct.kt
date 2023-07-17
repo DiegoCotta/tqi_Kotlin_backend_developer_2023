@@ -22,6 +22,6 @@ class CartProduct(
     @MapsId("productId")
     @ManyToOne @JoinColumn(name = "productId", updatable = false, nullable = false)
     val product: Product? = null,
-    @Column(nullable = false)
-    val quantity: BigDecimal
+    @Column(nullable = false, precision = 19, scale = 2)
+    var quantity: BigDecimal
 )

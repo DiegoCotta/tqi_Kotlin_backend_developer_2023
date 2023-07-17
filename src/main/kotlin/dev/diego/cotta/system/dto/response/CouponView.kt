@@ -1,7 +1,7 @@
 package dev.diego.cotta.system.dto.response
 
 import dev.diego.cotta.system.entity.Coupon
-import dev.diego.cotta.system.entity.CouponType
+import dev.diego.cotta.system.enum.CouponType
 import java.text.DecimalFormat
 import java.util.*
 

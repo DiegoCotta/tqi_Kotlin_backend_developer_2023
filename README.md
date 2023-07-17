@@ -1,5 +1,5 @@
 <h1>JuMarket-API</h1>
-<p align="center">API Rest para um Sistema da JuMarket</p>
+<p align="center">API Rest para JuMarket</p>
 <p align="center">
      <a>
         <img alt="Java" src="https://img.shields.io/badge/Java-v17-blue.svg" />
@@ -22,10 +22,10 @@
 </p>
 
 <h3>Problema proposto</h2>
-<p>Uma mercearia do Bairro Bom Descanso chamada JuMarket necessita de uma solução para venda de auto-atendimento, para tanto necessitamos desenvolver as seguintes funcionalidades:</p>
+<p>Uma mercearia do Bairro Bom Descanso chamada JuMarket necessita de uma solução para venda de autoatendimento, para tanto necessitamos desenvolver as seguintes funcionalidades:</p>
 
 <h4>Cadastro de categorias:</h4>
-<p>Um cadastro de categorias de produto, apenas contendo a nome da categoria, por exemplo: Produtos de Limpeza, Bebidas, Bombonier, Salgadinhos, Chás e Cafes, Grãose Cereais e outros;</p>
+<p>Um cadastro de categorias de produto, apenas contendo a nome da categoria, por exemplo: Produtos de Limpeza, Bebidas, Bombonier, Salgadinhos, Chás e Cafes, Grãos e Cereais e outros;</p>
 
 <h4>Cadastro de produtos:</h4>
 <p>Um cadastro contendo os produtos do mercado, este cadastro poderá conter os seguintes campos:<br>
@@ -55,15 +55,16 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 
 <h4>API Publica de JuMarket</h4>
 
-<p>Para a parte publica da API tem as seguintes opções:</p>
+<p>Para a parte pública da API tem as seguintes opções:</p>
 
 * Buscar produto por nome
-* Listar produtos disponiveis
+* Listar produtos disponíveis
 * Listar produtos por Categoria
 * Listar Categorias
 * Criar carrinho com produtos
 * Adicionar produto no carrinho
 * Alterar quantidade de produtos de um carrinho
+* Remover Produto do carrinho
 * Listar Informações do carrinho
 * Finalizar compra do carrinho
 
@@ -91,16 +92,17 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 </p>
 </figure>
 
-<h3>Posiveis melhorias para a solução proposta:</h3>
+<h3>Possíveis melhorias para a solução proposta:</h3>
 
-<p>Nesse topico está as possiveis melhorias que podem ser efetuada na estrutura, mas pelo tempo do desafio não será implementado</p>
+<p>Nesse tópico está as possíveis melhorias que podem ser efetuada na estrutura, mas pelo tempo do desafio não será implementado</p>
 
-* Colocar uma data de expirção para o carrinho
+* Colocar uma data de expiração para o carrinho
 * Desativar a venda de um produto
 * Criar um cadastro de usuário para realizar uma compra
 * Cupons ter um limite de uso
 * Listar compras realizadas em uma faixa de tempo
 * Paginações para as listagens de produto, categoria, carrinhos, vendas, cupons
 * Melhora dos tratamento dos nullables
+* Melhorar no retorno de erro da api, principalmente nos erros com relação ao banco de dados
 
 <h3>Como executar o projeto:</h3>

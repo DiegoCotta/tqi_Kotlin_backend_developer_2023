@@ -1,5 +1,6 @@
 package dev.diego.cotta.system.entity
 
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Embedded
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -15,6 +16,7 @@ class Cart(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     val id: UUID? = null,
-    @OneToMany(mappedBy = "cart") var products: List<CartProduct> = mutableListOf(),
+    @OneToMany(mappedBy = "cart", cascade = [CascadeType.ALL], orphanRemoval = true)
+    val products: MutableList<CartProduct> = mutableListOf(),
     @Embedded var sale: Sale? = null
 )

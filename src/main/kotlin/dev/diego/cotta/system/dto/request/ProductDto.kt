@@ -1,8 +1,8 @@
 package dev.diego.cotta.system.dto.request
 
 import dev.diego.cotta.system.entity.Category
-import dev.diego.cotta.system.entity.MeasuringUnitType
 import dev.diego.cotta.system.entity.Product
+import dev.diego.cotta.system.enum.MeasuringUnitType
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Positive
 import java.math.BigDecimal

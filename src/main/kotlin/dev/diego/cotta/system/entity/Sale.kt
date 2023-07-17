@@ -1,5 +1,6 @@
 package dev.diego.cotta.system.entity
 
+import dev.diego.cotta.system.enum.PaymentType
 import jakarta.persistence.Column
 import jakarta.persistence.Embeddable
 import jakarta.persistence.Enumerated
@@ -14,12 +15,10 @@ import java.util.UUID
 
 @Embeddable
 class Sale(
-    @GeneratedValue(strategy = GenerationType.UUID)
-    val saleId: UUID? = null,
-    @Column(nullable = false) val totalPrice: BigDecimal = BigDecimal.ZERO,
-    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "coupon_id", referencedColumnName = "id")
+    @Column(nullable = true, precision = 19, scale = 2) val totalPrice: BigDecimal? = null,
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "coupon_id", referencedColumnName = "id", nullable = true)
     var coupon: Coupon? = null,
-    @Enumerated @Column(nullable = false) val paymentType: PaymentType = PaymentType.DEBIT,
-    @Column(nullable = true) val totalPriceWithDiscount: BigDecimal? = null,
-    @Column(nullable = false) val date: LocalDate = LocalDate.now(),
+    @Enumerated @Column(nullable = true) val paymentType: PaymentType? = null,
+    @Column(nullable = true, precision = 19, scale = 2) val totalPriceWithDiscount: BigDecimal? = null,
+    @Column(nullable = true) val date: LocalDate? = null,
 )

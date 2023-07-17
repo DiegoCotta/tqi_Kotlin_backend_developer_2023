@@ -1,13 +1,11 @@
 package dev.diego.cotta.system.dto.request
 
 import dev.diego.cotta.system.entity.Coupon
-import dev.diego.cotta.system.entity.CouponType
+import dev.diego.cotta.system.enum.CouponType
 import jakarta.validation.constraints.Future
 import jakarta.validation.constraints.NotNull
-import jakarta.validation.constraints.Pattern
 import java.math.BigDecimal
 import java.time.LocalDate
-
 
 data class CouponDto(
     @field:NotNull(message = "O code é obrigatório") val code: String,

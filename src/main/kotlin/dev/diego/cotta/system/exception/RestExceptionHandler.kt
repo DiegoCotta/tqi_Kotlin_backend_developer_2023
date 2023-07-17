@@ -1,6 +1,7 @@
 package dev.diego.cotta.system.exception
 
 import org.springframework.dao.DataAccessException
+import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
@@ -73,6 +74,19 @@ class RestExceptionHandler {
                     status = HttpStatus.BAD_REQUEST.value(),
                     exception = ex.javaClass.toString(),
                     details = mutableMapOf(ex.cause.toString() to ex.message)
+                )
+            )
+    }
+    @ExceptionHandler(DataIntegrityViolationException::class)
+    fun handlerValidException(ex: DataIntegrityViolationException): ResponseEntity<ExceptionDetails> {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+            .body(
+                ExceptionDetails(
+                    title = "Bad Request! Consult the documentation",
+                    timestamp = LocalDateTime.now(),
+                    status = HttpStatus.BAD_REQUEST.value(),
+                    exception = ex.javaClass.toString(),
+                    details = mutableMapOf("message" to "Error in some id of the request")
                 )
             )
     }

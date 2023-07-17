@@ -13,4 +13,4 @@ annotation class RequestAnnotation(
     val message: String = "{RequestAnnotation}",
     val groups: Array<KClass<*>> = [],
     val payload: Array<KClass<out Payload>> = []
-)
+    )

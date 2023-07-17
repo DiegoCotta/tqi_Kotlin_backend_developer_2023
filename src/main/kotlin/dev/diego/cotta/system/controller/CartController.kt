@@ -2,6 +2,7 @@ package dev.diego.cotta.system.controller
 
 import dev.diego.cotta.system.dto.request.AddProductDto
 import dev.diego.cotta.system.dto.request.CartDto
+import dev.diego.cotta.system.dto.request.CartProductUpdateDto
 import dev.diego.cotta.system.dto.request.CheckoutDto
 import dev.diego.cotta.system.dto.response.CartCreatedView
 import dev.diego.cotta.system.dto.response.CartPrivateView
@@ -9,6 +10,7 @@ import dev.diego.cotta.system.dto.response.SaleView
 import dev.diego.cotta.system.entity.Cart
 import dev.diego.cotta.system.service.CartService
 import dev.diego.cotta.system.service.CouponService
+import jakarta.transaction.Transactional
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -27,10 +29,12 @@ class CartController(
     private val serviceCoupon: CouponService,
 ) {
     @PostMapping
+    @Transactional
     fun saveCart(@RequestBody @Valid cartDto: CartDto): ResponseEntity<CartCreatedView> {
         val cart = service.save(Cart())
         cart.id?.let { service.saveAllProducts(cartDto.products.map { it.toEntity(cart.id) }) }
-        return ResponseEntity.ok(CartCreatedView(cart))
+        service.findCartById(cart.id!!)
+        return ResponseEntity.ok(CartCreatedView(service.findCartById(cart.id!!)))
     }
 
     @PostMapping("/checkout")
@@ -51,10 +55,15 @@ class CartController(
 
 
     @PutMapping("/update-product")
-    fun updateCartProducts(@RequestBody @Valid cartDto: CartDto) {
-        updateCartProducts(cartDto)
+    fun updateCartProducts(@RequestBody @Valid cartDto: CartProductUpdateDto): ResponseEntity<CartCreatedView> {
+        val products = cartDto.products.map { product ->
+            service.findCartProductById(cartDto.cartId, product.productId)
+                .apply {
+                    quantity = product.quantity
+                }
+        }
+        return ResponseEntity.ok(CartCreatedView(service.findCartById(cartDto.cartId)))
     }
-
 
     @GetMapping
     fun getCart(@RequestParam("id") id: UUID): ResponseEntity<CartPrivateView> =
