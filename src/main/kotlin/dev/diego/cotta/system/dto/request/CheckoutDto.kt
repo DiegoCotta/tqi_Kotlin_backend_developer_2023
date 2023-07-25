@@ -28,7 +28,11 @@ data class CheckoutDto(
             totalPriceWithDiscount = coupon?.let {
                 when (it.discountType) {
                     CouponType.FIXED -> {
-                        totalPrice.subtract(coupon.discountValue)
+                        val discount = totalPrice.subtract(coupon.discountValue)
+                        if (discount < BigDecimal.ZERO)
+                            BigDecimal.ZERO
+                        else
+                            discount
                     }
 
                     CouponType.PERCENTAGE -> {

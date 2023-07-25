@@ -14,7 +14,8 @@ data class CartPrivateView(
     val paymentType: PaymentType?,
     val totalPriceWithDiscount: BigDecimal?,
     val date: LocalDate?,
-    val totalProducts: Int
+    val totalProducts: Int,
+    val products: List<CartProductsPrivateView>
 ) {
     constructor(cart: Cart) : this(
         cartId = cart.id!!,
@@ -23,7 +24,7 @@ data class CartPrivateView(
         coupon = cart.sale?.coupon,
         paymentType = cart.sale?.paymentType,
         date = cart.sale?.date,
-        totalProducts = cart.products.size
-
+        totalProducts = cart.products.size,
+        products = cart.products.map { CartProductsPrivateView(it.product!!, it) }
     )
 }

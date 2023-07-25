@@ -19,9 +19,16 @@ class CartServiceImpl(
     override fun save(cart: Cart): Cart =
         cartRepository.save(cart)
 
-    override fun saveAllProducts(products: List<CartProduct>){
+    override fun saveAllProducts(products: List<CartProduct>) {
         products.forEach {
-            cartProductRepository.saveCartProducts(it.cartProductId.cartId, it.cartProductId.productId, it.quantity)
+            cartProductRepository.saveCartProducts(it.cartProductId.cartId,
+                it.cartProductId.productId, it.quantity, it.price)
+        }
+    }
+
+    override fun updateCartProducts(products: List<CartProduct>) {
+        products.forEach {
+            cartProductRepository.updateCartProductPrice(it.cartProductId.cartId, it.cartProductId.productId, it.price)
         }
     }
 
@@ -33,7 +40,8 @@ class CartServiceImpl(
         cartProductRepository.saveCartProducts(
             product.cartProductId.cartId,
             product.cartProductId.productId,
-            product.quantity)
+            product.quantity,
+            product.price)
         return cartRepository.findById(product.cartProductId.cartId)
             .orElseThrow { BusinessException("Carrinho não encontrado!") }
     }
@@ -53,5 +61,13 @@ class CartServiceImpl(
 
     override fun deleteCartProduct(cartProduct: CartProduct) {
         cartProductRepository.delete(cartProduct)
+    }
+
+    override fun hasSaleCompleted(id: UUID): Cart {
+        val cart = cartRepository.findById(id).orElseThrow { BusinessException("Carrinho não encontrado!") }
+        if (cart.sale?.date != null) {
+            throw BusinessException("A venda desse carrinho já foi finalizado")
+        } else
+            return cart
     }
 }

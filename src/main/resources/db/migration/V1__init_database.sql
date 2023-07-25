@@ -21,10 +21,10 @@ CREATE TABLE product
     name           VARCHAR(255)                            NOT NULL,
     measuring_unit INT                                     NOT NULL,
     price          DECIMAL(19, 2)                          NOT NULL,
-    quantity       DECIMAL(19, 2)                          NOT NULL,
     category_id    BIGINT,
     CONSTRAINT pk_product PRIMARY KEY (id)
 );
+
 CREATE TABLE cart
 (
     id                        UUID NOT NULL,
@@ -39,6 +39,7 @@ CREATE TABLE cart
 CREATE TABLE cart_product
 (
     quantity   DECIMAL(19, 2) NOT NULL,
+    price      DECIMAL(19, 2),
     cart_id    UUID           NOT NULL,
     product_id BIGINT         NOT NULL,
     CONSTRAINT pk_cart_product PRIMARY KEY (cart_id, product_id)
@@ -50,12 +51,11 @@ ALTER TABLE cart_product
 ALTER TABLE cart_product
     ADD CONSTRAINT FK_CART_PRODUCT_ON_PRODUCTID FOREIGN KEY (product_id) REFERENCES product (id);
 
-ALTER TABLE category
-    ADD CONSTRAINT uc_category_name UNIQUE (name);
+ALTER TABLE cart
+    ADD CONSTRAINT FK_CART_ON_COUPON FOREIGN KEY (coupon_id) REFERENCES coupon (id);
 
 ALTER TABLE product
     ADD CONSTRAINT FK_PRODUCT_ON_CATEGORY FOREIGN KEY (category_id) REFERENCES category (id);
 
-ALTER TABLE cart
-    ADD CONSTRAINT FK_CART_ON_COUPON FOREIGN KEY (coupon_id) REFERENCES coupon (id);
-
+ALTER TABLE category
+    ADD CONSTRAINT uc_category_name UNIQUE (name);

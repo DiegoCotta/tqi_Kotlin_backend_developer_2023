@@ -33,7 +33,6 @@ class ProductController(val service: ProductService, val categoryService: Catego
         val product = service.findById(productUpdateDto.id)
         productUpdateDto.categoryId?.let { product.category = categoryService.findById(it) }
         productUpdateDto.price?.let { product.price = it }
-        productUpdateDto.quantity?.let { product.quantity = it }
         service.save(product)
         return ResponseEntity.ok(ProductPrivateView(product))
     }

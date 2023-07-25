@@ -11,6 +11,8 @@ interface CartService {
 
     fun saveAllProducts(products: List<CartProduct>)
 
+    fun updateCartProducts(products: List<CartProduct>)
+
     @Transactional
     fun saveAllProductsObjects(products: List<CartProduct>)
 
@@ -23,5 +25,7 @@ interface CartService {
     fun findTodaySales(): List<Cart>
 
     fun deleteCartProduct(cartProduct: CartProduct)
+
+    fun hasSaleCompleted(id: UUID) : Cart
 
 }

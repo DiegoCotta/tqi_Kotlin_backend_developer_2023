@@ -10,7 +10,6 @@ data class ProductPrivateView(
     val name: String = "",
     val measuringUnit: MeasuringUnitType = MeasuringUnitType.UN,
     var price: BigDecimal = BigDecimal.ZERO,
-    var quantity: BigDecimal = BigDecimal.ZERO,
     var category: Category
 ) {
     constructor(product: Product) : this(
@@ -18,7 +17,6 @@ data class ProductPrivateView(
         id = product.id,
         measuringUnit = product.measuringUnit,
         price = product.price,
-        quantity = product.quantity,
         category = product.category
     )
 }

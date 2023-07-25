@@ -20,7 +20,6 @@ data class ProductDto(
             name = name,
             measuringUnit = measuringUnit,
             price = price,
-            quantity = quantity,
             category = category
 
         )

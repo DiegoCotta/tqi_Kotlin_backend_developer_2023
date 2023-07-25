@@ -8,6 +8,7 @@ import dev.diego.cotta.system.dto.response.CartCreatedView
 import dev.diego.cotta.system.dto.response.CartPrivateView
 import dev.diego.cotta.system.dto.response.SaleView
 import dev.diego.cotta.system.entity.Cart
+import dev.diego.cotta.system.exception.BusinessException
 import dev.diego.cotta.system.service.CartService
 import dev.diego.cotta.system.service.CouponService
 import jakarta.transaction.Transactional
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
+import java.math.BigDecimal
 import java.util.*
 
 @RestController
@@ -36,15 +38,26 @@ class CartController(
     @Transactional
     fun saveCart(@RequestBody @Valid cartDto: CartDto): ResponseEntity<CartCreatedView> {
         val cart = service.save(Cart())
-        cart.id?.let { service.saveAllProducts(cartDto.products.map { it.toEntity(cart.id) }) }
+        cart.id?.let {
+            val products = cartDto.products.filter {
+                it.quantity != BigDecimal.ZERO
+            }.map { it.toEntity(cart.id) }
+            if (products.isEmpty()) {
+                throw BusinessException("Deve conter ao menos um produto com quantidade maior que Zero!")
+            }
+            service.saveAllProducts(products)
+        }
         service.findCartById(cart.id!!)
         return ResponseEntity.ok(CartCreatedView(service.findCartById(cart.id)))
     }
 
     @PostMapping("/checkout")
+    @Transactional
     fun saveCart(@RequestBody @Valid checkoutDto: CheckoutDto): ResponseEntity<SaleView> {
+        val cart = service.hasSaleCompleted(checkoutDto.cartId)
         val coupon = checkoutDto.couponCode?.let { serviceCoupon.findByCode(it) }
-        val cart = service.findCartById(checkoutDto.cartId)
+        cart.products.map { it.price = it.product?.price }
+        service.updateCartProducts(cart.products)
         cart.sale = checkoutDto.toEntity(cart, coupon)
         val response = service.save(cart)
         return ResponseEntity.ok(SaleView(response.id!!))
@@ -53,13 +66,20 @@ class CartController(
 
     @PutMapping("/add")
     fun updateCartProducts(@RequestBody @Valid cartDto: AddProductDto): ResponseEntity<CartCreatedView> {
-        val cart = service.addProduct(cartDto.toEntity())
-        return ResponseEntity.ok(CartCreatedView(cart))
+        service.hasSaleCompleted(cartDto.cartId)
+        try {
+            service.findCartProductById(cartDto.cartId, cartDto.productId)
+            throw BusinessException("O produto já existe no carrinho!")
+        } catch (ignore: Exception) {
+            val cart = service.addProduct(cartDto.toEntity())
+            return ResponseEntity.ok(CartCreatedView(cart))
+        }
     }
 
 
     @PutMapping("/update-product")
     fun updateCartProducts(@RequestBody @Valid cartDto: CartProductUpdateDto): ResponseEntity<CartCreatedView> {
+        service.hasSaleCompleted(cartDto.cartId)
         cartDto.products.map { product ->
             service.findCartProductById(cartDto.cartId, product.productId)
                 .apply {
@@ -80,6 +100,7 @@ class CartController(
     @DeleteMapping("/remove/product/{productId}/cart/{cartId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun deleteCartProduct(@PathVariable productId: Long, @PathVariable cartId: UUID) {
+        service.hasSaleCompleted(cartId)
         val cartProduct = service.findCartProductById(cartId = cartId, productId = productId)
         service.deleteCartProduct(cartProduct)
     }

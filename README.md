@@ -47,7 +47,7 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 
 <p>Como solução decidi incrementar a solução adicionando uma opção do cliente adicionar um cupom para a compra que pode dar um desconto fixo de X ou um de desconto percentual de X%.</p>
 
-<p>Para as propriedades de produto foi adicionando quantidade de produtos disponíveis para venda, o produto pertencer há uma categoria e mudando a propriedade de preço para o produto.</p>
+<p>Para as propriedades de produto foi adicionando o produto pertencer há uma categoria e mudando a propriedade de preço para o produto.</p>
 
 <p>No carrinho foi retirado o preço de venda e passado para o produto.</p>
 
@@ -101,6 +101,7 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 * Criar um cadastro de usuário para realizar uma compra
 * Cupons ter um limite de uso
 * Listar compras realizadas em uma faixa de tempo
+* Adicionar quantidade disponível para venda de um produto
 * Paginações para as listagens de produto, categoria, carrinhos, vendas, cupons
 * Melhora dos tratamento dos nullables
 * Melhorar no retorno de erro da api, principalmente nos erros com relação ao banco de dados

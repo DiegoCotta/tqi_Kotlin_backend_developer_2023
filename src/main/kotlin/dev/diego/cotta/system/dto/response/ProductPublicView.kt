@@ -8,7 +8,6 @@ data class ProductPublicView(
     val name: String,
     val measuringUnit: MeasuringUnitType,
     val price: BigDecimal,
-    val quantity: BigDecimal,
     val id: Long,
     val categoryName: String
 ) {
@@ -16,7 +15,6 @@ data class ProductPublicView(
         name = product.name,
         measuringUnit = product.measuringUnit,
         price = product.price,
-        quantity = product.quantity,
         id = product.id ?: 0L,
         categoryName = product.category.name
     )

@@ -1,5 +1,6 @@
 package dev.diego.cotta.system.repository
 
+import dev.diego.cotta.system.entity.Cart
 import dev.diego.cotta.system.entity.CartProduct
 import dev.diego.cotta.system.entity.CartProductId
 import jakarta.transaction.Transactional
@@ -14,7 +15,17 @@ import java.util.UUID
 interface CartProductRepository : JpaRepository<CartProduct, CartProductId> {
 
     @Modifying
-    @Query(value = "insert into cart_product (CART_ID,PRODUCT_ID,QUANTITY) VALUES (:cartId,:productId, :quantity)", nativeQuery = true)
+    @Query(value = "insert into cart_product (CART_ID,PRODUCT_ID,QUANTITY,PRICE)" +
+        " VALUES (:cartId,:productId, :quantity, :price)", nativeQuery = true)
     @Transactional
-    fun saveCartProducts(@Param("cartId") cartID: UUID, @Param("productId") productId: Long, @Param("quantity") quantity: BigDecimal)
+    fun saveCartProducts(@Param("cartId") cartID: UUID, @Param("productId") productId: Long,
+                         @Param("quantity") quantity: BigDecimal, @Param("price") price: BigDecimal?)
+
+    @Transactional
+    @Modifying
+    @Query("update cart_product set PRICE = :price where PRODUCT_ID = " +
+        ":productId and CART_ID = :cartId", nativeQuery = true)
+    fun updateCartProductPrice(@Param("cartId") cartID: UUID, @Param("productId") productId: Long,
+                               @Param("price") price: BigDecimal?)
+
 }

@@ -24,7 +24,6 @@ class Product(
     @Enumerated @Column(nullable = false, length = 2)
     val measuringUnit: MeasuringUnitType = MeasuringUnitType.UN,
     @Column(nullable = false, precision = 19, scale = 2) var price: BigDecimal = BigDecimal.ZERO,
-    @Column(nullable = false, precision = 19, scale = 2) var quantity: BigDecimal = BigDecimal.ZERO,
     @ManyToOne @JoinColumn(name = "category_id", referencedColumnName = "id")
     var category: Category,
     @OneToMany(mappedBy = "product")
