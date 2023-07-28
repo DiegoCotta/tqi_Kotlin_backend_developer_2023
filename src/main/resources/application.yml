@@ -22,3 +22,6 @@ spring:
 server:
   servlet:
     contextPath: /api
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

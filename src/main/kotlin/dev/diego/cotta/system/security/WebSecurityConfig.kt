@@ -32,6 +32,11 @@ class WebSecurityConfig(private val userDetailsService: SecurityDatabaseService,
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain? {
         http.csrf {
             it.disable()
+            it.ignoringRequestMatchers("/h2-console/**")
+        }.headers {
+            it.frameOptions { configurations ->
+                configurations.disable()
+            }
         }.authorizeHttpRequests { authz ->
             authz
                 .requestMatchers(HttpMethod.POST, "/category").hasAnyRole("MANAGERS")
@@ -47,6 +52,7 @@ class WebSecurityConfig(private val userDetailsService: SecurityDatabaseService,
                 .requestMatchers(HttpMethod.PUT, "/cart/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/cart/today-sales").hasAnyRole("MANAGERS")
                 .requestMatchers(HttpMethod.GET, "/cart").permitAll()
+                .requestMatchers(HttpMethod.GET, "/h2-console/**").permitAll()
                 .requestMatchers(HttpMethod.DELETE, "/cart/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/coupon").hasAnyRole("MANAGERS")
                 .anyRequest().authenticated()

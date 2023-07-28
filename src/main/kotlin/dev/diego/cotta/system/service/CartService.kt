@@ -16,6 +16,7 @@ interface CartService {
     @Transactional
     fun saveAllProductsObjects(products: List<CartProduct>)
 
+    @Transactional
     fun addProduct(product: CartProduct): Cart
 
     fun findCartById(id: UUID): Cart

@@ -66,7 +66,7 @@ class CartServiceImpl(
     override fun hasSaleCompleted(id: UUID): Cart {
         val cart = cartRepository.findById(id).orElseThrow { BusinessException("Carrinho não encontrado!") }
         if (cart.sale?.date != null) {
-            throw BusinessException("A venda desse carrinho já foi finalizado")
+            throw BusinessException("A venda desse carrinho já foi finalizado!")
         } else
             return cart
     }
