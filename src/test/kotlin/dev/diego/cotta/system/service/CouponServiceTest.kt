@@ -1,23 +1,20 @@
 package dev.diego.cotta.system.service
 
 import dev.diego.cotta.system.entity.Coupon
+import dev.diego.cotta.system.enum.CouponType
+import dev.diego.cotta.system.exception.BusinessException
 import dev.diego.cotta.system.repository.CouponRepository
+import dev.diego.cotta.system.service.impl.CouponServiceImpl
+import dev.diego.cotta.system.stubs.Stubs.buildCoupon
+import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
-import org.springframework.test.context.ActiveProfiles
-import java.math.BigDecimal
-import java.time.LocalDate
-import dev.diego.cotta.system.enum.CouponType
-import dev.diego.cotta.system.exception.BusinessException
-import dev.diego.cotta.system.service.impl.CouponServiceImpl
-import io.mockk.every
 import io.mockk.verify
 import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 
-@ActiveProfiles("test")
 @ExtendWith(MockKExtension::class)
 class CouponServiceTest {
 
@@ -80,22 +77,6 @@ class CouponServiceTest {
             .isThrownBy { couponService.findByCode("teste") }
             .withMessage("Cupom Inválido!")
         verify { couponRepository.findByCode("teste") }
-    }
-
-    companion object {
-        private fun buildCoupon(
-            id: Long = 1L,
-            code: String = "teste",
-            discountType: CouponType = CouponType.FIXED,
-            discountValue: BigDecimal = BigDecimal.valueOf(10.0),
-            expirationDate: LocalDate = LocalDate.now()
-        ): Coupon = Coupon(
-            id = id,
-            code = code,
-            discountType = discountType,
-            discountValue = discountValue,
-            expirationDate = expirationDate
-        )
     }
 
 }

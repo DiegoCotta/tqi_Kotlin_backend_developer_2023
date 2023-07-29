@@ -8,6 +8,8 @@ import dev.diego.cotta.system.exception.BusinessException
 import dev.diego.cotta.system.repository.CartProductRepository
 import dev.diego.cotta.system.repository.CartRepository
 import dev.diego.cotta.system.service.impl.CartServiceImpl
+import dev.diego.cotta.system.stubs.Stubs.buildCart
+import dev.diego.cotta.system.stubs.Stubs.buildCartProduct
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
@@ -18,12 +20,9 @@ import io.mockk.verify
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.springframework.test.context.ActiveProfiles
-import java.math.BigDecimal
 import java.time.LocalDate
 import java.util.*
 
-@ActiveProfiles("test")
 @ExtendWith(MockKExtension::class)
 class CartServiceTest {
 
@@ -249,28 +248,4 @@ class CartServiceTest {
             .withMessage("A venda desse carrinho já foi finalizado!")
     }
 
-    companion object {
-        fun buildCart(
-            id: UUID = UUID.randomUUID(),
-            sale: Sale = Sale(
-                coupon = null,
-                paymentType = null,
-                totalPriceWithDiscount = null,
-                date = null,
-            )
-        ) = Cart(
-            id = id,
-            sale = sale
-        )
-
-        fun buildCartProduct(
-            cartProductId: CartProductId = CartProductId(cartId = UUID.randomUUID(), productId = 1L),
-            quantity: BigDecimal = BigDecimal.valueOf(3.0),
-            price: BigDecimal = BigDecimal.valueOf(13.0)
-        ) = CartProduct(
-            cartProductId = cartProductId,
-            quantity = quantity,
-            price = price,
-        )
-    }
 }

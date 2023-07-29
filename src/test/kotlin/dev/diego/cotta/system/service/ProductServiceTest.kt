@@ -1,11 +1,10 @@
 package dev.diego.cotta.system.service
 
-import dev.diego.cotta.system.entity.Category
 import dev.diego.cotta.system.entity.Product
-import dev.diego.cotta.system.enum.MeasuringUnitType
 import dev.diego.cotta.system.exception.BusinessException
 import dev.diego.cotta.system.repository.ProductRepository
 import dev.diego.cotta.system.service.impl.ProductServiceImpl
+import dev.diego.cotta.system.stubs.Stubs.buildProduct
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
@@ -14,11 +13,8 @@ import io.mockk.verify
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.springframework.test.context.ActiveProfiles
-import java.math.BigDecimal
 import java.util.*
 
-@ActiveProfiles("test")
 @ExtendWith(MockKExtension::class)
 class ProductServiceTest {
 
@@ -103,26 +99,5 @@ class ProductServiceTest {
             .isThrownBy { productService.findById(1L) }
             .withMessage("Produto não encontrado!")
         verify { productRepository.findById(1L) }
-    }
-
-
-
-    companion object {
-        fun buildProduct(
-            id: Long = 1L,
-            name: String = "Detergente",
-            measuringUnit: MeasuringUnitType = MeasuringUnitType.UN,
-            price: BigDecimal = BigDecimal.valueOf(6.5),
-            category: Category = Category(
-                id = 1L,
-                name = "Limpeza"
-            )
-        ) = Product(
-            id = id,
-            name = name,
-            measuringUnit = measuringUnit,
-            price = price,
-            category = category
-        )
     }
 }

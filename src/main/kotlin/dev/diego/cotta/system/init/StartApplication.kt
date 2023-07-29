@@ -13,7 +13,7 @@ class StartApplication(private val userRepository: UserRepository) : CommandLine
     @Autowired
     private val passwordEncoder: PasswordEncoder? = null
     override fun run(vararg args: String?) {
-        var user: User? = userRepository.findByUsername("admin")
+        var user: User? = userRepository.findUserByUsername("admin")
         if (user == null) {
             user = User(username = "admin", name = "admin", password = passwordEncoder?.encode("master123"),
                 roles = listOf("MANAGERS"))

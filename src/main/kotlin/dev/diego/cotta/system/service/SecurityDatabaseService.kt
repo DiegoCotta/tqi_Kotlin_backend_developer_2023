@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service
 @Service
 class SecurityDatabaseService(private val userRepository: UserRepository) : UserDetailsService {
     override fun loadUserByUsername(username: String): UserDetails {
-        val userEntity = userRepository.findByUsername(username) ?: throw UsernameNotFoundException(username)
+        val userEntity = userRepository.findUserByUsername(username) ?: throw UsernameNotFoundException(username)
         val authorities: MutableSet<GrantedAuthority> = HashSet()
         userEntity.roles.forEach { role -> authorities.add(SimpleGrantedAuthority("ROLE_$role")) }
         return User(userEntity.username,

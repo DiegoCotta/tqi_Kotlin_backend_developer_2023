@@ -4,6 +4,7 @@ import dev.diego.cotta.system.entity.Category
 import dev.diego.cotta.system.exception.BusinessException
 import dev.diego.cotta.system.repository.CategoryRepository
 import dev.diego.cotta.system.service.impl.CategoryServiceImpl
+import dev.diego.cotta.system.stubs.Stubs.buildCategory
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
@@ -15,10 +16,8 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.dao.DataIntegrityViolationException
-import org.springframework.test.context.ActiveProfiles
 import java.util.*
 
-@ActiveProfiles("test")
 @ExtendWith(MockKExtension::class)
 class CategoryServiceTest {
     @MockK
@@ -101,13 +100,4 @@ class CategoryServiceTest {
         verify { categoryRepository.deleteById(1L) }
     }
 
-
-
-
-    companion object {
-        fun buildCategory(
-            id: Long = 1L,
-            name: String = "Bombonier"
-        ) = Category(id = id, name = name)
-    }
 }

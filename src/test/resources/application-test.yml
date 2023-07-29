@@ -4,6 +4,7 @@ spring:
     username: sa
     password:
     driver-class-name: org.h2.Driver
+    initialization-mode: always
 
   jpa:
     show-sql: true
@@ -14,6 +15,3 @@ spring:
 
   flyway:
     enabled: false
-  sql:
-    init:
-      mode: always
