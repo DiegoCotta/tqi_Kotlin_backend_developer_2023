@@ -15,7 +15,7 @@ import java.time.LocalDate
 import java.util.*
 import kotlin.collections.ArrayList
 
-object Stubs {
+object EntitiesStubs {
     fun buildCoupon(
         id: Long? = 1L,
         code: String = "teste",

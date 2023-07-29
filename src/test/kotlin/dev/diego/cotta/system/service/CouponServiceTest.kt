@@ -5,7 +5,7 @@ import dev.diego.cotta.system.enum.CouponType
 import dev.diego.cotta.system.exception.BusinessException
 import dev.diego.cotta.system.repository.CouponRepository
 import dev.diego.cotta.system.service.impl.CouponServiceImpl
-import dev.diego.cotta.system.stubs.Stubs.buildCoupon
+import dev.diego.cotta.system.stubs.EntitiesStubs.buildCoupon
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK

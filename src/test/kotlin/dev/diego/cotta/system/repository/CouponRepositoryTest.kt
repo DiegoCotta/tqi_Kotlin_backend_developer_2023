@@ -1,7 +1,7 @@
 package dev.diego.cotta.system.repository
 
 import dev.diego.cotta.system.entity.Coupon
-import dev.diego.cotta.system.stubs.Stubs.buildCoupon
+import dev.diego.cotta.system.stubs.EntitiesStubs.buildCoupon
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

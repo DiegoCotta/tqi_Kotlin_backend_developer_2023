@@ -9,10 +9,9 @@ import java.math.BigDecimal
 data class ProductUpdateDto(
     @field:NotNull val id: Long,
     val price: BigDecimal?,
-    val quantity: BigDecimal?,
     val categoryId: Long?
 ) {
     fun checkFields(): Boolean {
-        return price != null || quantity != null || categoryId != null
+        return price != null  || categoryId != null
     }
 }

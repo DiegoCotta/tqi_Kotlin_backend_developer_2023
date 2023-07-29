@@ -4,10 +4,10 @@ import dev.diego.cotta.system.entity.Cart
 import dev.diego.cotta.system.entity.CartProductId
 import dev.diego.cotta.system.entity.Product
 import dev.diego.cotta.system.entity.Sale
-import dev.diego.cotta.system.stubs.Stubs.buildCart
-import dev.diego.cotta.system.stubs.Stubs.buildCartProduct
-import dev.diego.cotta.system.stubs.Stubs.buildCategory
-import dev.diego.cotta.system.stubs.Stubs.buildProduct
+import dev.diego.cotta.system.stubs.EntitiesStubs.buildCart
+import dev.diego.cotta.system.stubs.EntitiesStubs.buildCartProduct
+import dev.diego.cotta.system.stubs.EntitiesStubs.buildCategory
+import dev.diego.cotta.system.stubs.EntitiesStubs.buildProduct
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

@@ -4,7 +4,7 @@ import dev.diego.cotta.system.entity.Category
 import dev.diego.cotta.system.exception.BusinessException
 import dev.diego.cotta.system.repository.CategoryRepository
 import dev.diego.cotta.system.service.impl.CategoryServiceImpl
-import dev.diego.cotta.system.stubs.Stubs.buildCategory
+import dev.diego.cotta.system.stubs.EntitiesStubs.buildCategory
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK

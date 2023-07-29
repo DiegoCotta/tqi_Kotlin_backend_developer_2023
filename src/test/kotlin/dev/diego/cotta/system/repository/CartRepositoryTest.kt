@@ -2,7 +2,7 @@ package dev.diego.cotta.system.repository
 
 import dev.diego.cotta.system.entity.Cart
 import dev.diego.cotta.system.entity.Sale
-import dev.diego.cotta.system.stubs.Stubs.buildCart
+import dev.diego.cotta.system.stubs.EntitiesStubs.buildCart
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

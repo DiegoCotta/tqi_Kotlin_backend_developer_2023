@@ -2,7 +2,7 @@ package dev.diego.cotta.system.service
 
 import dev.diego.cotta.system.entity.User
 import dev.diego.cotta.system.repository.UserRepository
-import dev.diego.cotta.system.stubs.Stubs.buildUser
+import dev.diego.cotta.system.stubs.EntitiesStubs.buildUser
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK

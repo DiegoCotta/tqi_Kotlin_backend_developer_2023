@@ -1,7 +1,7 @@
 package dev.diego.cotta.system.repository
 
 import dev.diego.cotta.system.entity.User
-import dev.diego.cotta.system.stubs.Stubs.buildUser
+import dev.diego.cotta.system.stubs.EntitiesStubs.buildUser
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

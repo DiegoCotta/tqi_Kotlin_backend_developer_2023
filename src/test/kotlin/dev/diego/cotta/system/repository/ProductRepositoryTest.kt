@@ -1,8 +1,8 @@
 package dev.diego.cotta.system.repository
 
 import dev.diego.cotta.system.entity.Product
-import dev.diego.cotta.system.stubs.Stubs.buildCategory
-import dev.diego.cotta.system.stubs.Stubs.buildProduct
+import dev.diego.cotta.system.stubs.EntitiesStubs.buildCategory
+import dev.diego.cotta.system.stubs.EntitiesStubs.buildProduct
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

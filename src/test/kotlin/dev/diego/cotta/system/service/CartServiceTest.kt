@@ -8,8 +8,8 @@ import dev.diego.cotta.system.exception.BusinessException
 import dev.diego.cotta.system.repository.CartProductRepository
 import dev.diego.cotta.system.repository.CartRepository
 import dev.diego.cotta.system.service.impl.CartServiceImpl
-import dev.diego.cotta.system.stubs.Stubs.buildCart
-import dev.diego.cotta.system.stubs.Stubs.buildCartProduct
+import dev.diego.cotta.system.stubs.EntitiesStubs.buildCart
+import dev.diego.cotta.system.stubs.EntitiesStubs.buildCartProduct
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
