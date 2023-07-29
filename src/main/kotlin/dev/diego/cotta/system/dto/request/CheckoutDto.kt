@@ -11,11 +11,14 @@ import java.time.LocalDate
 
 import java.util.UUID
 
+private const val HUNDRED = 100L
+
 data class CheckoutDto(
     @field:NotNull(message = "O id do carrinho é obrigatório") val cartId: UUID,
     val couponCode: String?,
     @field:NotNull(message = "O método de pagamento é obrigatório") val paymentType: PaymentType
 ) {
+
     fun toEntity(cart: Cart, coupon: Coupon?): Sale {
         val totalPrice = cart.products.sumOf {
             (it.product?.price ?: BigDecimal.ZERO).multiply(BigDecimal.valueOf(it.quantity.toLong()))
@@ -36,7 +39,8 @@ data class CheckoutDto(
                     }
 
                     CouponType.PERCENTAGE -> {
-                        totalPrice.subtract(coupon.discountValue)
+                        val discount = coupon.discountValue.divide(BigDecimal.valueOf(HUNDRED)).multiply(totalPrice)
+                        totalPrice.subtract(discount)
                     }
                 }
             }
