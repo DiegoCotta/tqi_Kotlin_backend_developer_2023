@@ -14,7 +14,7 @@ import java.util.UUID
 private const val HUNDRED = 100L
 
 data class CheckoutDto(
-    @field:NotNull(message = "O id do carrinho é obrigatório") val cartId: UUID,
+    @field:NotNull(message = "O id do carrinho é obrigatório") val cartId: UUID?,
     val couponCode: String?,
     @field:NotNull(message = "O método de pagamento é obrigatório") val paymentType: PaymentType
 ) {

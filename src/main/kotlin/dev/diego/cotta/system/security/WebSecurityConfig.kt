@@ -47,7 +47,7 @@ class WebSecurityConfig(private val userDetailsService: SecurityDatabaseService,
                 .requestMatchers(HttpMethod.GET, "/product/find/id/**").hasAnyRole("MANAGERS")
                 .requestMatchers(HttpMethod.GET, "/product",
                     "/product/find/name/**", "/product/find/category/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/cart").hasAnyRole("MANAGERS")
+                .requestMatchers(HttpMethod.POST, "/cart").permitAll()
                 .requestMatchers(HttpMethod.POST, "/cart/checkout").permitAll()
                 .requestMatchers(HttpMethod.PUT, "/cart/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/cart/today-sales").hasAnyRole("MANAGERS")

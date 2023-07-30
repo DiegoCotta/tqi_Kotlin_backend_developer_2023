@@ -13,8 +13,7 @@ class CartCreatedViewTest {
         val uuid = UUID.randomUUID()
         val cartCreatedView = CartCreatedView(Cart(id = uuid))
         val expected = CartCreatedView(
-            cartCode = uuid,
-            products = listOf()
+            cartCode = uuid
         )
         //when
         //then

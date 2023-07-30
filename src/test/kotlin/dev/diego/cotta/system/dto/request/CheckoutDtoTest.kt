@@ -31,7 +31,7 @@ class CheckoutDtoTest {
             id = checkoutDto.cartId,
             products = mutableListOf(
                 CartProduct(
-                    cartProductId = CartProductId(checkoutDto.cartId, 1L),
+                    cartProductId = CartProductId(checkoutDto.cartId!!, 1L),
                     quantity = BigDecimal.valueOf(2),
                     product = Product(
                         1L,
@@ -70,7 +70,7 @@ class CheckoutDtoTest {
             id = checkoutDto.cartId,
             products = mutableListOf(
                 CartProduct(
-                    cartProductId = CartProductId(checkoutDto.cartId, 1L),
+                    cartProductId = CartProductId(checkoutDto.cartId!!, 1L),
                     quantity = BigDecimal.valueOf(2),
                     product = Product(
                         1L,
@@ -116,7 +116,7 @@ class CheckoutDtoTest {
             id = checkoutDto.cartId,
             products = mutableListOf(
                 CartProduct(
-                    cartProductId = CartProductId(checkoutDto.cartId, 1L),
+                    cartProductId = CartProductId(checkoutDto.cartId!!, 1L),
                     quantity = BigDecimal.ONE,
                     product = Product(
                         1L,
@@ -157,7 +157,7 @@ class CheckoutDtoTest {
             id = checkoutDto.cartId,
             products = mutableListOf(
                 CartProduct(
-                    cartProductId = CartProductId(checkoutDto.cartId, 1L),
+                    cartProductId = CartProductId(checkoutDto.cartId!!, 1L),
                     quantity = BigDecimal.valueOf(2),
                     product = Product(
                         1L,

@@ -42,19 +42,15 @@ class CartController(
             val products = cartDto.products.filter {
                 it.quantity != BigDecimal.ZERO
             }.map { it.toEntity(cart.id) }
-            if (products.isEmpty()) {
-                throw BusinessException("Deve conter ao menos um produto com quantidade maior que Zero!")
-            }
             service.saveAllProducts(products)
         }
-        service.findCartById(cart.id!!)
-        return ResponseEntity.ok(CartCreatedView(service.findCartById(cart.id)))
+        return ResponseEntity.ok(CartCreatedView(cart))
     }
 
     @PostMapping("/checkout")
     @Transactional
     fun saveCart(@RequestBody @Valid checkoutDto: CheckoutDto): ResponseEntity<SaleView> {
-        val cart = service.hasSaleCompleted(checkoutDto.cartId)
+        val cart = service.hasSaleCompleted(checkoutDto.cartId!!)
         val coupon = checkoutDto.couponCode?.let { serviceCoupon.findByCode(it) }
         cart.products.map { it.price = it.product?.price }
         service.updateCartProducts(cart.products)
@@ -69,11 +65,11 @@ class CartController(
         service.hasSaleCompleted(cartDto.cartId)
         try {
             service.findCartProductById(cartDto.cartId, cartDto.productId)
-            throw BusinessException("O produto já existe no carrinho!")
         } catch (ignore: Exception) {
             val cart = service.addProduct(cartDto.toEntity())
             return ResponseEntity.ok(CartCreatedView(cart))
         }
+        throw BusinessException("O produto já existe no carrinho!")
     }
 
 
