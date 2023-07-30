@@ -7,6 +7,7 @@ plugins {
 	kotlin("plugin.spring") version "1.8.21"
 	kotlin("plugin.jpa") version "1.8.21"
     id("io.gitlab.arturbosch.detekt") version "1.23.0"
+	jacoco
 }
 
 group = "dev.diego.cotta"
@@ -46,3 +47,19 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+
+tasks.test {
+	finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+}
+tasks.jacocoTestReport {
+	dependsOn(tasks.test) // tests are required to run before generating the report
+}
+
+
+tasks.jacocoTestReport {
+	reports {
+		csv.required.set(true)
+	}
+}
+
+
