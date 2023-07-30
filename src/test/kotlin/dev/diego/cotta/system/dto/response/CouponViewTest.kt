@@ -20,8 +20,7 @@ class CouponViewTest {
         )
         //when
         //then
-        Assertions.assertThat(couponView).usingRecursiveComparison()
-            .ignoringFields("fieldToIgnore")
+        Assertions.assertThat(couponView)
             .isEqualTo(expected)
     }
 
@@ -36,8 +35,7 @@ class CouponViewTest {
         )
         //when
         //then
-        Assertions.assertThat(couponView).usingRecursiveComparison()
-            .ignoringFields("fieldToIgnore")
+        Assertions.assertThat(couponView)
             .isEqualTo(expected)
     }
 }
