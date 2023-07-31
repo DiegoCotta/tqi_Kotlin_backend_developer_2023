@@ -19,9 +19,12 @@
     <a>
         <img alt="Flyway" src="https://img.shields.io/badge/Flyway-v9.20-red.svg">
     </a>
+<a>
+<img src=".github/badges/jacoco.svg"  alt="Code Coverage"/><br>
+</a>
 </p>
 
-<h3>Problema proposto</h2>
+<h3>Problema proposto</h3>
 <p>Uma mercearia do Bairro Bom Descanso chamada JuMarket necessita de uma solução para venda de autoatendimento, para tanto necessitamos desenvolver as seguintes funcionalidades:</p>
 
 <h4>Cadastro de categorias:</h4>
@@ -47,17 +50,17 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 
 <p>Como solução decidi incrementar a solução adicionando uma opção do cliente adicionar um cupom para a compra que pode dar um desconto fixo de X ou um de desconto percentual de X%.</p>
 
-<p>Para as propriedades de produto foi adicionando o produto pertencer há uma categoria e mudando a propriedade de preço para o produto.</p>
-
-<p>No carrinho foi retirado o preço de venda e passado para o produto.</p>
+<p>Para as propriedades de produto foi adicionando o produto pertencer há uma categoria e adicionado a propriedade de preço para o produto.</p>
 
 <p>E para finalizar a venda foi adicionado a possibilidade de adicionar um cupom de desconto, o valor de venda com desconto, valor total da venda, data da venda.</p>
+
+<p>Como meta de qualidade foi estipulado uma cobertura mínima de 90% de código.</p>
 
 <h4>API Publica de JuMarket</h4>
 
 <p>Para a parte pública da API tem as seguintes opções:</p>
 
-* Buscar produto por nome
+* Buscar produtos por nome
 * Listar produtos disponíveis
 * Listar produtos por Categoria
 * Listar Categorias
@@ -70,22 +73,30 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 
 <h4>API Privada de JuMarket</h4>
 
-<p>Para a parte privada da API, somente usuários autenticados tem os seguintes opções:</p>
+<p>Para a parte privada da API, somente o usuário autenticado tem os seguintes opções:</p>
 
 * Cadastrar categoria
-* Cadastrar produto
+* Excluir categoria
 * Cadastrar cupom
-* Atualizar produto
-* Informações do produto
 * Listar cupons
+* Cadastrar produto
+* Atualizar produto
+* Informações de um produto
 * Listar vendas de um dia
 
 <h4>Validações que a API</h4>
 
-* Disponibilidade do produto para adição ao carrinho
+* Validação de campos obrigatórios das requisições
+* Não pode excluir uma categoria que já tenha um produto associado a ele
+* Um cupom tem que te um código diferente de um outro
+* Um Produto não pode ter o mesmo nome de um outro
 * Se o cupom é valido para a aplicação do desconto
+* Não pode ser adicionado um produto duplicado no carrinho, para isso deve alterar a quantidade de itens da compra do carrinho
+* Não pode finalizar a compra de um carrinho já finalizado
+* Não pode alterar a quantidade de produtos de um carrinho já finalizado
+* Um carrinho não pode ser criado vazio, deve ser criado com pelo menos 1
 
-<h4 align="center">Diagrama ER do banco de dados do JuMarket</h4
+<h4 align="center">Diagrama ER do banco de dados do JuMarket</h4>
 <figure>
 <p align="center">
   <img src="assets/JuMarket.png"  alt="API para Sistema de Avaliação de Créditos"/><br>
@@ -107,3 +118,4 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 * Melhorar no retorno de erro da api, principalmente nos erros com relação ao banco de dados
 
 <h3>Como executar o projeto:</h3>
+

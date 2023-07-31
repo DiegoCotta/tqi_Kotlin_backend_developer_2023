@@ -26,13 +26,13 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("org.flywaydb:flyway-core")
+	implementation("org.flywaydb:flyway-core:7.8.0")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
 	implementation("io.mockk:mockk:1.13.5")
 	runtimeOnly("com.h2database:h2")
-//	runtimeOnly("com.mysql:mysql-connector-j")
+	runtimeOnly("com.mysql:mysql-connector-j")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 }
@@ -49,10 +49,10 @@ tasks.withType<Test> {
 }
 
 tasks.test {
-	finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+	finalizedBy(tasks.jacocoTestReport)
 }
 tasks.jacocoTestReport {
-	dependsOn(tasks.test) // tests are required to run before generating the report
+	dependsOn(tasks.test)
 }
 
 
