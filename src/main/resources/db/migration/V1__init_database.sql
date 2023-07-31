@@ -27,7 +27,7 @@ CREATE TABLE product
 
 CREATE TABLE cart
 (
-    id                        char(36)       NOT NULL,
+    id                        BINARY(16)     NOT NULL,
     total_price               DECIMAL(19, 2) NULL,
     coupon_id                 BIGINT         NULL,
     payment_type              INT            NULL,
@@ -40,7 +40,7 @@ CREATE TABLE cart_product
 (
     quantity   DECIMAL(19, 2) NOT NULL,
     price      DECIMAL(19, 2) NULL,
-    cart_id    char(36)       NOT NULL,
+    cart_id    BINARY(16)   NOT NULL,
     product_id BIGINT         NOT NULL,
     CONSTRAINT pk_cart_product PRIMARY KEY (cart_id, product_id)
 );

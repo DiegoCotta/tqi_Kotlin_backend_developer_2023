@@ -1,20 +1,18 @@
 spring:
-# h2
-#  datasource:
-#    url: jdbc:h2:mem:ju_market_system_db
-#    username: diego
-#    password:
+  # h2
+  #  datasource:
+  #    url: jdbc:h2:mem:ju_market_system_db
+  #    username: diego
+  #    password:
   datasource:
-    url: jdbc:mysql://192.168.99.101:3306/jumarketdb
+    url: jdbc:mysql://mysqldb:3306/jumarketdb
     username: sa
     password: jumarketmaster1234
+    driverClassName: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: false
     properties:
       hibernate.format_sql: true
-  flyway:
-    locations: db
-    enabled: false
 #  h2:
 #    console:
 #      enabled: true

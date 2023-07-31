@@ -1,11 +1,13 @@
 package dev.diego.cotta.system.entity
 
+import jakarta.persistence.Column
 import jakarta.persistence.Embeddable
 import java.io.Serializable
-import java.util.UUID
+import java.util.*
 
 @Embeddable
 class CartProductId(
+    @Column(columnDefinition = "BINARY(16)")
     val cartId: UUID,
     val productId: Long
 ) : Serializable {

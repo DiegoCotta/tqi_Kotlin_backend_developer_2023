@@ -23,7 +23,7 @@ class CartPrivateViewTest {
             cartId = uuid,
             totalPrice = BigDecimal.TEN,
             coupon = null,
-            paymentType = PaymentType.CREDIT,
+            paymentType = PaymentType.CREDIT.paymentName,
             totalPriceWithDiscount = null,
             date = LocalDate.now(),
             totalProducts = 0,

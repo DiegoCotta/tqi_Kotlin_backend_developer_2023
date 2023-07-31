@@ -154,6 +154,21 @@
 					"name": "Buscar Cupons",
 					"request": {
 						"method": "GET",
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "master123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
 						"header": [],
 						"url": {
 							"raw": "{{url}}/api/coupon",
