@@ -131,4 +131,4 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 <p><b>user: admin senha:master123</b></p>
 
 <p>Também é possível utilizar o postman, é necessário criar um enviroment com a variável url, e utilizar com a collection abaixo:  </p>
-<a href="assets/FJuMarket.postman_collection.json">Collection Postman</a><br>[Dockerfile](Dockerfile)
+<a href="assets/JuMarket.postman_collection.json">Collection Postman</a><br>
