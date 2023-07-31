@@ -89,7 +89,6 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 * Validação de campos obrigatórios das requisições
 * Não pode excluir uma categoria que já tenha um produto associado a ele
 * Um cupom tem que te um código diferente de um outro
-* Um Produto não pode ter o mesmo nome de um outro
 * Se o cupom é valido para a aplicação do desconto
 * Não pode ser adicionado um produto duplicado no carrinho, para isso deve alterar a quantidade de itens da compra do
   carrinho
