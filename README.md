@@ -5,7 +5,7 @@
         <img alt="Java" src="https://img.shields.io/badge/Java-v17-blue.svg" />
     </a>
     <a>
-        <img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-v1.8.22-purple.svg" />
+        <img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-v1.8.21-purple.svg" />
     </a>
     <a>
         <img alt="Spring Boot" src="https://img.shields.io/badge/Spring%20Boot-v3.1.1-brightgreen.svg" />
@@ -17,7 +17,7 @@
         <img alt="H2" src="https://img.shields.io/badge/H2-v2.1.210-darkblue.svg" />
     </a>
     <a>
-        <img alt="Flyway" src="https://img.shields.io/badge/Flyway-v9.20-red.svg">
+        <img alt="Flyway" src="https://img.shields.io/badge/Flyway-v7.8.0-red.svg">
     </a>
 <a>
 <img src=".github/badges/jacoco.svg"  alt="Code Coverage"/><br>
@@ -91,7 +91,8 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 * Um cupom tem que te um código diferente de um outro
 * Um Produto não pode ter o mesmo nome de um outro
 * Se o cupom é valido para a aplicação do desconto
-* Não pode ser adicionado um produto duplicado no carrinho, para isso deve alterar a quantidade de itens da compra do carrinho
+* Não pode ser adicionado um produto duplicado no carrinho, para isso deve alterar a quantidade de itens da compra do
+  carrinho
 * Não pode finalizar a compra de um carrinho já finalizado
 * Não pode alterar a quantidade de produtos de um carrinho já finalizado
 * Um carrinho não pode ser criado vazio, deve ser criado com pelo menos 1
@@ -110,6 +111,7 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 * Colocar uma data de expiração para o carrinho
 * Desativar a venda de um produto
 * Criar um cadastro de usuário para realizar uma compra
+* Criar cadastro para administradores do sistema ao invés de ter somente um fixo
 * Cupons ter um limite de uso
 * Listar compras realizadas em uma faixa de tempo
 * Adicionar quantidade disponível para venda de um produto
@@ -119,3 +121,14 @@ A implementação deve utilizar linguagem backend: Kotlin com o Springboot, o Ba
 
 <h3>Como executar o projeto:</h3>
 
+<p>Para executar o projeto basta criar o .jar com o gradle:</p>
+<code>./gradle bootJar</code>
+<p>Após criado o jar bastar executar o compose para subir o container da aplicação e do banco de dados MySQL:</p>
+<code>docker-compose up -d</code>
+<p>Com isso irá subir uma aplicação para a porta 8080 e com context-path api, exemplo para acessar aplicação:</p>
+<code>http://123.123.0.10:8080/api</code>
+<p>Para testar existem 2 opções, usando o swagger mas é necessário utilizar a senha de admin do sistema.</p>
+<p><b>user: admin senha:master123</b></p>
+
+<p>Também é possível utilizar o postman, é necessário criar um enviroment com a variável url, e utilizar com a collection abaixo:  </p>
+<a href="assets/FJuMarket.postman_collection.json">Collection Postman</a><br>[Dockerfile](Dockerfile)
